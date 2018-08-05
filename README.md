@@ -10,3 +10,5 @@ Docker image for running Kivy apps on a Raspberry Pi 3. Based largely on the wor
 or
 
 `./run.sh apps/yourapp/main.py`
+## Build Docker the image yourself
+`docker build -t you/yourimage -f Dockerfile .`
