@@ -6,3 +6,7 @@ Docker images for running Kivy apps on a Raspberry Pi 3
 `curl -sSL https://get.docker.com | sh`
 ## Run app
 `docker run --rm -it andrewmk/rpi-kivy:stretch apps/pictures/main.py`
+
+or
+
+`./run-stretch.sh apps/yourapp/main.py`
