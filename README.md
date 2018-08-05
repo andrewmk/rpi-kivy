@@ -9,4 +9,4 @@ Docker image for running Kivy apps on a Raspberry Pi 3. Based largely on the wor
 
 or
 
-`./run-stretch.sh apps/yourapp/main.py`
+`./run.sh apps/yourapp/main.py`
