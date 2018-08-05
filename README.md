@@ -1,5 +1,5 @@
 # rpi-kivy
-Docker images for running Kivy apps on a Raspberry Pi 3
+Docker image for running Kivy apps on a Raspberry Pi 3
 
 ## Install Raspbian stretch
 ## Install docker
