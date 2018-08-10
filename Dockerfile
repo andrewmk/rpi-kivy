@@ -1,6 +1,6 @@
 FROM resin/rpi-raspbian:stretch-20180801
 
-RUN apt-get update && apt-get install -yq \
+RUN apt-get update && apt-get install -yq --no-install-recommends \
     gcc libraspberrypi-dev libraspberrypi-bin libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev \
     pkg-config libgl1-mesa-dev libgles2-mesa-dev mtdev-tools\
     python-pygame python-setuptools libgstreamer1.0-dev git-core \
