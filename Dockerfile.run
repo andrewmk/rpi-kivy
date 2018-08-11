@@ -1,0 +1,25 @@
+FROM resin/rpi-raspbian:stretch-20180801
+
+RUN apt-get update && apt-get install -yq --no-install-recommends \
+    libraspberrypi-dev libraspberrypi-bin libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev \
+    libgl1-mesa-dev libgles2-mesa-dev mtdev-tools\
+    python-pygame \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+COPY --from=andrewmk/rpi-kivy:latest /usr/local/lib/python2.7/dist-packages/Kivy-1.10.1.egg-info /usr/local/lib/python2.7/dist-packages/
+COPY --from=andrewmk/rpi-kivy:latest /usr/local/lib/python2.7/dist-packages/kivy /usr/local/lib/python2.7/dist-packages/kivy/
+COPY --from=andrewmk/rpi-kivy:latest /usr/local/share/kivy-examples /usr/local/share/kivy-examples/
+
+# create src dir
+RUN mkdir -p /usr/src/app/
+ENV KIVY_HOME=/usr/src/app
+# set as WORKDIR
+WORKDIR /usr/src/app
+COPY config.ini config.ini
+
+# Copy my application files
+RUN mkdir -p apps
+COPY ./apps/ ./apps/
+
+# runs a sample app on container start
+CMD ["python", "apps/pictures/main.py"]
