@@ -1,4 +1,4 @@
-FROM resin/rpi-raspbian:stretch-20180801
+FROM resin/rpi-raspbian:stretch-20180801 as builder
 
 RUN apt-get update && apt-get install -yq --no-install-recommends \
     gcc libraspberrypi-dev libraspberrypi-bin libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev \
@@ -17,3 +17,29 @@ RUN pip install wheel && pip install pgen && pip install -I Cython==0.28.2 && rm
 
 RUN git clone -b 1.10.1 --depth 1 https://github.com/kivy/kivy \
      && cd kivy && python setup.py build && python setup.py install && cd .. && rm -Rf kivy
+
+FROM resin/rpi-raspbian:stretch-20180801
+
+RUN apt-get update && apt-get install -yq --no-install-recommends \
+    libraspberrypi-dev libraspberrypi-bin libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev \
+    libgl1-mesa-dev libgles2-mesa-dev mtdev-tools\
+    python-pygame \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+COPY --from=builder /usr/local/lib/python2.7/dist-packages/Kivy-1.10.1.egg-info /usr/local/lib/python2.7/dist-packages/
+COPY --from=builder /usr/local/lib/python2.7/dist-packages/kivy /usr/local/lib/python2.7/dist-packages/kivy/
+COPY --from=builder /usr/local/share/kivy-examples /usr/local/share/kivy-examples/
+
+# create src dir
+RUN mkdir -p /usr/src/app/
+ENV KIVY_HOME=/usr/src/app
+# set as WORKDIR
+WORKDIR /usr/src/app
+COPY config.ini config.ini
+
+# Copy my application files
+RUN mkdir -p apps
+COPY ./apps/ ./apps/
+
+# runs a sample app on container start
+CMD ["python", "apps/pictures/main.py"]
