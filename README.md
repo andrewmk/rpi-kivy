@@ -1,7 +1,8 @@
 # rpi-kivy
 Docker image for running Kivy apps on a Raspberry Pi 3. Based largely on the work here https://github.com/shaunmulligan/resin-kivy plus scraps from around the internet.
 
-## Install Raspbian stretch
+## Install Raspbian
+You probably already have Raspbian
 ## Install Docker
 `curl -sSL https://get.docker.com | sh`
 ## Pull Docker image and run app
