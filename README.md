@@ -6,7 +6,7 @@ You probably already have Raspbian
 ## Install Docker
 `curl -sSL https://get.docker.com | sh`
 ## Pull Docker image and run app
-`docker run --rm -it andrewmk/rpi-kivy:stretch python apps/pictures/main.py`
+`docker run --rm -it andrewmk/rpi-kivy2:buster python apps/pictures/main.py`
 
 or
 
