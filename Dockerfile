@@ -15,8 +15,8 @@ ENV KIVY_HOME=/usr/src/app
 WORKDIR /usr/src/app
 COPY config.ini config.ini
 
-##RUN pip install pygments docutils wheel && pip install pgen
-RUN pip install wheel && pip install pgen && pip install -I Cython==0.28.2 && rm -Rf /root/.cache/*
+RUN pip install wheel && pip install pgen && pip install -I Cython==0.28.2 && \
+   pip install pygments && pip install docutils && rm -Rf /root/.cache/*
 
 RUN git clone -b 1.10.1 --depth 1 https://github.com/kivy/kivy \
      && cd kivy && python setup.py build && python setup.py install && cd .. && rm -Rf kivy
