@@ -1,2 +1,1 @@
-#!/bin/sh
-docker run -it --rm --device=/dev/input/event0 --device=/dev/vchiq andrewmk/rpi-kivy:stretch $*
+docker run -it --rm --device=/dev/input/event3 --device=/dev/vchiq --device=/dev/dri andrewmk/rpi-kivy2:buster python3 $*

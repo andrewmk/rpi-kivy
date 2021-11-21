@@ -2,9 +2,7 @@ FROM balenalib/rpi-raspbian:buster-20211025
 
 SHELL ["/bin/bash", "-c"]
 
-RUN apt update 
-
-RUN apt install pkg-config libgl1-mesa-dev libgles2-mesa-dev \
+RUN apt update && apt install pkg-config libgl1-mesa-dev libgles2-mesa-dev \
    libgstreamer1.0-dev \
    gstreamer1.0-plugins-{bad,base,good,ugly} \
    gstreamer1.0-{omx,alsa} libmtdev-dev \
@@ -44,7 +42,6 @@ RUN mkdir -p /usr/src/app/
 ENV KIVY_HOME=/usr/src/app
 # set as WORKDIR
 WORKDIR /usr/src/app
-COPY config.ini config.ini
 
 # python 3 environment
 RUN python3 -m pip install --upgrade pip setuptools pygments docutils
@@ -52,6 +49,8 @@ RUN python3 -m pip install --upgrade pip setuptools pygments docutils
 # kivy 2.0.0
 RUN python3 -m pip install "kivy[full] @ https://github.com/kivy/kivy/archive/refs/tags/2.0.0.zip"
 
+# Copy Kivy config file
+COPY config.ini config.ini
 
 # Copy my application files
 RUN mkdir -p apps
