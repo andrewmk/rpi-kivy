@@ -13,13 +13,15 @@ RUN mkdir -p /usr/src/app/
 ENV KIVY_HOME=/usr/src/app
 # set as WORKDIR
 WORKDIR /usr/src/app
-COPY config.ini config.ini
 
 RUN pip install wheel && pip install pgen && pip install -I Cython==0.28.2 && \
    pip install pygments && pip install docutils && rm -Rf /root/.cache/*
 
 RUN git clone -b 1.11.1 --depth 1 https://github.com/kivy/kivy \
      && cd kivy && python setup.py build && python setup.py install && cd .. && rm -Rf kivy
+
+# Copy Kivy config file
+COPY config.ini config.ini
 
 # Copy my application files
 RUN mkdir -p apps
