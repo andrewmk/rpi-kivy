@@ -17,7 +17,7 @@ WORKDIR /usr/src/app
 RUN pip install wheel && pip install pgen && pip install -I Cython==0.28.2 && \
    pip install pygments && pip install docutils && rm -Rf /root/.cache/*
 
-RUN git clone -b 1.11.1 --depth 1 https://github.com/kivy/kivy \
+RUN git clone -b stable-1.10.1 --depth 1 https://github.com/andrewmk/kivy \
      && cd kivy && python setup.py build && python setup.py install && cd .. && rm -Rf kivy
 
 # Copy Kivy config file
