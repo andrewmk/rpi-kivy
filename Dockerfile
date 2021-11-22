@@ -1,4 +1,4 @@
-FROM resin/rpi-raspbian:stretch-20180801
+FROM balenalib/rpi-raspbian:stretch-20211025
 
 RUN apt-get update && apt-get install -yq --no-install-recommends \
     gcc libraspberrypi-dev libraspberrypi-bin libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev \
