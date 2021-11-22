@@ -5,7 +5,7 @@ Docker image for running Kivy apps on a Raspberry Pi 3. Based largely on the wor
 ## Install Docker
 `curl -sSL https://get.docker.com | sh`
 ## Pull Docker image and run app
-`docker run --rm -it andrewmk/rpi-kivy:stretch python apps/pictures/main.py`
+`docker run --rm -it andrewmk/rpi-kivy-1.10.1:stretch python apps/pictures/main.py`
 
 or
 
